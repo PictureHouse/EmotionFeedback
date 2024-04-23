@@ -108,7 +108,7 @@ struct SettingsView: View {
             
             Spacer()
             
-            Text("[Version 1.0] 2024 Yune Cho")
+            Text("[Version 1.1] 2024 Yune Cho")
                 .foregroundStyle(Color(.lightGray))
         }
         .foregroundStyle(Color(colorScheme == .dark ? .white : .black))
