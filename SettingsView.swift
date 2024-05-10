@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct SettingsView: View {
+    let version: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
+    
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
     
@@ -108,7 +110,7 @@ struct SettingsView: View {
             
             Spacer()
             
-            Text("[Version 1.1] 2024 Yune Cho")
+            Text("[Version \(version)] 2024 Yune Cho")
                 .foregroundStyle(Color(.lightGray))
         }
         .foregroundStyle(Color(colorScheme == .dark ? .white : .black))
