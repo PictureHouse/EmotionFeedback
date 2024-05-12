@@ -4,6 +4,7 @@ struct SectionHeaderView: View {
     let title: String
     let icon: String
     @Binding var changed: Bool
+    @Binding var phone: Bool
     
     @State private var presentEmotionInputModal = false
     
@@ -15,7 +16,7 @@ struct SectionHeaderView: View {
                 .padding()
             Spacer()
             
-            if title == "Emotion Chart" {
+            if title == "Emotion Chart", phone == true {
                 Button(action: {
                     presentEmotionInputModal = true
                 }, label: {

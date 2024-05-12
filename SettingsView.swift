@@ -112,6 +112,7 @@ struct SettingsView: View {
             
             Text("[Version \(version)] 2024 Yune Cho")
                 .foregroundStyle(Color(.lightGray))
+                .padding(.bottom)
         }
         .foregroundStyle(Color(colorScheme == .dark ? .white : .black))
         .alert("Save Success", isPresented: $showSaveAlert) {
