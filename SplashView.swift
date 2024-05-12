@@ -1,10 +1,3 @@
-//
-//  SplashView.swift
-//  Emotion Feedback
-//
-//  Created by Yune Cho on 5/12/24.
-//
-
 import SwiftUI
 
 struct SplashView: View {

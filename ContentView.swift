@@ -11,22 +11,14 @@ struct ContentView: View {
     @State private var emotionData = UserData.shared.getEmotionData()
     @State private var analyzeResult = UserData.shared.analyzeEmotionData()
     @State private var changed = false
-    @State private var scaling = false
     @State private var tapped = false
     @State private var phone = true
-    
-    private func refreshData() async {
-        try? await Task.sleep(nanoseconds: 1_000_000_000)
-        
-        emotionData = UserData.shared.getEmotionData()
-        analyzeResult = UserData.shared.analyzeEmotionData()
-    }
     
     var body: some View {
         if showMainView {
             VStack {
                 if launchedBefore == false {
-                    HeaderView()
+                    HeaderView(changed: $changed)
                         .onAppear(perform: {
                             presentInitModal = true
                         })
@@ -49,7 +41,7 @@ struct ContentView: View {
                                 })
                         })
                 } else if presentEmotionInputModal == true {
-                    HeaderView()
+                    HeaderView(changed: $changed)
                         .sheet(isPresented: $presentEmotionInputModal, content: {
                             EmotionInputView(changed: $changed)
                                 .onDisappear(perform: {
@@ -60,13 +52,44 @@ struct ContentView: View {
                                 })
                         })
                 } else {
-                    HeaderView()
+                    HeaderView(changed: $changed)
                 }
                 
-                ZStack {
-                    if UIDevice.current.userInterfaceIdiom == .pad {
-                        GeometryReader { geometry in
-                            if geometry.size.height > geometry.size.width {
+                if UIDevice.current.userInterfaceIdiom == .pad {
+                    GeometryReader { geometry in
+                        if geometry.size.height > geometry.size.width {
+                            VStack {
+                                Section {
+                                    ChartView(data: emotionData)
+                                } header: {
+                                    SectionHeaderView(title: "Emotion Chart", icon: "chart.xyaxis.line", changed: $changed, phone: $phone)
+                                }
+                                
+                                Button(action: {
+                                    presentEmotionInputModal = true
+                                }, label: {
+                                    Label("Input Emotion", systemImage: "plus")
+                                })
+                                .buttonStyle(.borderedProminent)
+                                .sheet(isPresented: $presentEmotionInputModal, content: {
+                                    EmotionInputView(changed: $changed)
+                                })
+                                .padding()
+                                
+                                Section {
+                                    FeedbackView(result: analyzeResult, tapped: $tapped)
+                                } header: {
+                                    SectionHeaderView(title: "Feedback Message", icon: tapped ? "checkmark.message" : "ellipsis.message", changed: $changed, phone: $phone)
+                                }
+                                
+                                Spacer()
+                            }
+                            .onAppear(perform: {
+                                tapped = false
+                                phone = false
+                            })
+                        } else {
+                            HStack {
                                 VStack {
                                     Section {
                                         ChartView(data: emotionData)
@@ -80,12 +103,17 @@ struct ContentView: View {
                                         Label("Input Emotion", systemImage: "plus")
                                     })
                                     .buttonStyle(.borderedProminent)
-                                    .sheet(isPresented: $presentEmotionInputModal, content: {
+                                    .sheet(isPresented: $presentEmotionInputModal,content: {
                                         EmotionInputView(changed: $changed)
                                     })
                                     .padding()
                                     
+                                    Spacer()
+                                }
+                                
+                                VStack {
                                     Section {
+                                        Spacer()
                                         FeedbackView(result: analyzeResult, tapped: $tapped)
                                     } header: {
                                         SectionHeaderView(title: "Feedback Message", icon: tapped ? "checkmark.message" : "ellipsis.message", changed: $changed, phone: $phone)
@@ -93,99 +121,37 @@ struct ContentView: View {
                                     
                                     Spacer()
                                 }
-                                .onAppear(perform: {
-                                    tapped = false
-                                    phone = false
-                                })
-                            } else {
-                                HStack {
-                                    VStack {
-                                        Section {
-                                            ChartView(data: emotionData)
-                                        } header: {
-                                            SectionHeaderView(title: "Emotion Chart", icon: "chart.xyaxis.line", changed: $changed, phone: $phone)
-                                        }
-                                        
-                                        Button(action: {
-                                            presentEmotionInputModal = true
-                                        }, label: {
-                                            Label("Input Emotion", systemImage: "plus")
-                                        })
-                                        .buttonStyle(.borderedProminent)
-                                        .sheet(isPresented: $presentEmotionInputModal,content: {
-                                            EmotionInputView(changed: $changed)
-                                        })
-                                        .padding()
-                                        
-                                        Spacer()
-                                    }
-                                    
-                                    VStack {
-                                        Section {
-                                            Spacer()
-                                            FeedbackView(result: analyzeResult, tapped: $tapped)
-                                        } header: {
-                                            SectionHeaderView(title: "Feedback Message", icon: tapped ? "checkmark.message" : "ellipsis.message", changed: $changed, phone: $phone)
-                                        }
-                                        
-                                        Spacer()
-                                    }
-                                }
-                                .onAppear(perform: {
-                                    tapped = false
-                                    phone = false
-                                })
                             }
-                        }
-                    } else {
-                        VStack {
-                            Section {
-                                ChartView(data: emotionData)
-                            } header: {
-                                SectionHeaderView(title: "Emotion Chart", icon: "chart.xyaxis.line", changed: $changed, phone: $phone)
-                            }
-                            
-                            Section {
-                                FeedbackView(result: analyzeResult, tapped: $tapped)
-                            } header: {
-                                SectionHeaderView(title: "Feedback Message", icon: tapped ? "checkmark.message" : "ellipsis.message", changed: $changed, phone: $phone)
-                            }
-                            
-                            Spacer()
+                            .onAppear(perform: {
+                                tapped = false
+                                phone = false
+                            })
                         }
                     }
-                    
-                    Color(colorScheme == .dark ? .black : .white)
-                        .opacity(changed ? 0.7 : 0)
-                        .ignoresSafeArea()
-                    
-                    ScrollView {
-                        Image(systemName: "")
-                            .resizable()
-                            .frame(height: 200)
+                } else {
+                    VStack {
+                        Section {
+                            ChartView(data: emotionData)
+                        } header: {
+                            SectionHeaderView(title: "Emotion Chart", icon: "chart.xyaxis.line", changed: $changed, phone: $phone)
+                        }
                         
-                        Image(systemName: "arrowshape.down.fill")
-                            .resizable()
-                            .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
-                            .scaleEffect(scaling ? 1 : 0.8)
-                            .onAppear {
-                                withAnimation(.spring().repeatForever()) {
-                                    scaling.toggle()
-                                }
-                            }
+                        Section {
+                            FeedbackView(result: analyzeResult, tapped: $tapped)
+                        } header: {
+                            SectionHeaderView(title: "Feedback Message", icon: tapped ? "checkmark.message" : "ellipsis.message", changed: $changed, phone: $phone)
+                        }
                         
-                        Text("Your emotion data has been updated.\nPull to refresh!")
-                            .padding(.top)
-                            .multilineTextAlignment(.center)
-                    }
-                    .foregroundStyle(Color(.orange))
-                    .opacity(changed ? 1 : 0)
-                    .refreshable {
-                        await refreshData()
-                        changed = false
-                        tapped = false
+                        Spacer()
                     }
                 }
+                
+            }
+            .onChange(of: changed) {
+                emotionData = UserData.shared.getEmotionData()
+                analyzeResult = UserData.shared.analyzeEmotionData()
+                changed = false
+                tapped = false
             }
         } else {
             SplashView()

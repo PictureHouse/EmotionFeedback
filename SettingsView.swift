@@ -6,6 +6,8 @@ struct SettingsView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
     
+    @Binding var changed: Bool
+    
     @State private var userName: String = UserData.shared.getUserName()
     @State private var pushMessageTime: Date = UserData.shared.getPushMessageTime()
     @FocusState private var nameFocused: Bool
@@ -86,6 +88,7 @@ struct SettingsView: View {
                         UserData.shared.setPushMessageTime(time: pushMessageTime)
                         LocalNotificationHelper.shared.pushScheduledNotification(title: LocalNotificationHelper.shared.title, body: LocalNotificationHelper.shared.body, hour: hour!, minute: minute!, identifier: "customized_time")
                         showSaveAlert = true
+                        changed = true
                     }
                 }, label: {
                     Text("Save")

@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct HeaderView: View {
+    @Binding var changed: Bool
+    
     @State private var presentGuideModal = false
     @State private var presentSettingsModal = false
     
@@ -30,7 +32,7 @@ struct HeaderView: View {
                     .frame(width: 26, height: 26)
             })
             .sheet(isPresented: $presentSettingsModal, content: {
-                SettingsView()
+                SettingsView(changed: $changed)
             })
             .padding(4)
         }
