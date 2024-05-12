@@ -40,12 +40,11 @@ struct GuideView: View {
                             .padding(.bottom)
                         Spacer()
                     }
-                    Spacer()
                     
                     Image(colorScheme == .dark ? "main_dark" : "main_light")
                         .resizable()
                         .frame(width: 180, height: 390)
-                        .padding(.trailing)
+                        .padding(.horizontal)
                 }
                 
                 Divider()
@@ -55,8 +54,7 @@ struct GuideView: View {
                     Image(colorScheme == .dark ? "input_dark" : "input_light")
                         .resizable()
                         .frame(width: 180, height: 390)
-                        .padding(.leading)
-                    Spacer()
+                        .padding(.horizontal)
                     
                     VStack {
                         Text("Emotion Input Screen")
@@ -80,105 +78,77 @@ struct GuideView: View {
                 
                 HStack {
                     VStack {
-                        Text("Refresh after Emotion Input")
-                            .font(.system(size: 17, weight: .black, design: .rounded))
-                            .foregroundStyle(Color(.orange))
-                            .multilineTextAlignment(.center)
-                            .padding(.leading)
-                            .padding(.bottom)
-                        
-                        Text("To view the newly changed chart and feedback message according to the emotional data you entered, you must refresh the screen by following the instructions on the screen.")
-                            .multilineTextAlignment(.leading)
-                            .padding(.leading)
-                            .padding(.bottom)
-                        
-                        Spacer()
-                    }
-                    
-                    Image(colorScheme == .dark ? "refresh_dark" : "refresh_light")
-                        .resizable()
-                        .frame(width: 180, height: 390)
-                        .padding(.trailing)
-                }
-                
-                Divider()
-                    .padding()
-                
-                HStack {
-                    Image(colorScheme == .dark ? "chart_dark" : "chart_light")
-                        .resizable()
-                        .frame(width: 180, height: 390)
-                        .padding(.leading)
-                    Spacer()
-                    
-                    VStack {
                         Text("Emotion Chart Area")
                             .font(.system(size: 17, weight: .black, design: .rounded))
                             .foregroundStyle(Color(.orange))
                             .multilineTextAlignment(.center)
-                            .padding(.trailing)
+                            .padding(.leading)
                             .padding(.bottom)
                         
                         Text("Among the emotional data you entered, you can view a chart corresponding to the last 7 days.")
                             .multilineTextAlignment(.leading)
-                            .padding(.trailing)
+                            .padding(.leading)
                             .padding(.bottom)
                         
                         Spacer()
                     }
+                    
+                    Image(colorScheme == .dark ? "chart_dark" : "chart_light")
+                        .resizable()
+                        .frame(width: 180, height: 390)
+                        .padding(.horizontal)
                 }
                 
                 Divider()
                     .padding()
                 
                 HStack {
+                    Image(colorScheme == .dark ? "feedback_dark" : "feedback_light")
+                        .resizable()
+                        .frame(width: 180, height: 390)
+                        .padding(.horizontal)
+                    
                     VStack {
                         Text("Feedback Message Area")
                             .font(.system(size: 17, weight: .black, design: .rounded))
                             .foregroundStyle(Color(.orange))
                             .multilineTextAlignment(.center)
-                            .padding(.leading)
+                            .padding(.trailing)
                             .padding(.bottom)
                         
                         Text("If you follow the instructions below the speech bubble with the '...' mark and touch the speech bubble, the '...' mark in the speech bubble will change to a check mark and a feedback message about your chart will appear on the screen.")
                             .multilineTextAlignment(.leading)
-                            .padding(.leading)
+                            .padding(.trailing)
                             .padding(.bottom)
                         
                         Spacer()
                     }
-                    
-                    Image(colorScheme == .dark ? "feedback_dark" : "feedback_light")
-                        .resizable()
-                        .frame(width: 180, height: 390)
-                        .padding(.trailing)
                 }
                 
                 Divider()
                     .padding()
                 
                 HStack {
-                    Image(colorScheme == .dark ? "settings_dark" : "settings_light")
-                        .resizable()
-                        .frame(width: 180, height: 390)
-                        .padding(.leading)
-                    Spacer()
-                    
                     VStack {
                         Text("Settings")
                             .font(.system(size: 17, weight: .black, design: .rounded))
                             .foregroundStyle(Color(.orange))
                             .multilineTextAlignment(.center)
-                            .padding(.trailing)
+                            .padding(.leading)
                             .padding(.bottom)
                         
                         Text("You can change 'User Name' and 'Push Message Time'.\n(Default push message time is 10PM.)")
                             .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
-                            .padding(.trailing)
+                            .padding(.leading)
                             .padding(.bottom)
                         
                         Spacer()
                     }
+                    
+                    Image(colorScheme == .dark ? "settings_dark" : "settings_light")
+                        .resizable()
+                        .frame(width: 180, height: 390)
+                        .padding(.horizontal)
                 }
                 
                 Divider()
