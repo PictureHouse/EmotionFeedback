@@ -18,7 +18,7 @@ let package = Package(
             targets: ["AppModule"],
             bundleIdentifier: "io.github.picturehouse.EmotionFeedback",
             teamIdentifier: "WAC2RPX5HC",
-            displayVersion: "2.0",
+            displayVersion: "2.1",
             bundleVersion: "3",
             appIcon: .asset("AppIcon"),
             accentColor: .presetColor(.orange),

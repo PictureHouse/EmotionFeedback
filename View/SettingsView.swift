@@ -6,6 +6,7 @@ struct SettingsView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
     
+    @Binding var edited: Bool
     @Binding var changed: Bool
     
     @State private var userName: String = UserData.shared.getUserName()
@@ -26,6 +27,7 @@ struct SettingsView: View {
                 Button(action: {
                     if userName == UserData.shared.getUserName() {
                         dismiss()
+                        edited = false
                     } else {
                         showCancelAlert = true
                     }
@@ -52,6 +54,11 @@ struct SettingsView: View {
                     .focused($nameFocused)
                     .submitLabel(.done)
                     .textFieldStyle(.roundedBorder)
+                    .onChange(of: userName) {
+                        if userName != UserData.shared.getUserName() {
+                            edited = true
+                        }
+                    }
             }
             
             VStack {
@@ -65,6 +72,11 @@ struct SettingsView: View {
                     .padding()
                     .datePickerStyle(.wheel)
                     .labelsHidden()
+                    .onChange(of: pushMessageTime) {
+                        if pushMessageTime != UserData.shared.getPushMessageTime() {
+                            edited = true
+                        }
+                    }
             }
             
             HStack {
@@ -89,6 +101,7 @@ struct SettingsView: View {
                         LocalNotificationHelper.shared.pushScheduledNotification(title: LocalNotificationHelper.shared.title, body: LocalNotificationHelper.shared.body, hour: hour!, minute: minute!, identifier: "customized_time")
                         showSaveAlert = true
                         changed = true
+                        edited = false
                     }
                 }, label: {
                     Text("Save")
@@ -100,6 +113,7 @@ struct SettingsView: View {
                 Button(action: {
                     if userName == UserData.shared.getUserName() {
                         dismiss()
+                        edited = false
                     } else {
                         showCancelAlert = true
                     }

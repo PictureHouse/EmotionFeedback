@@ -5,6 +5,7 @@ struct HeaderView: View {
     
     @State private var presentGuideModal = false
     @State private var presentSettingsModal = false
+    @State private var edited = false
     
     var body: some View {
         HStack {
@@ -32,7 +33,8 @@ struct HeaderView: View {
                     .frame(width: 26, height: 26)
             })
             .sheet(isPresented: $presentSettingsModal, content: {
-                SettingsView(changed: $changed)
+                SettingsView(edited: $edited, changed: $changed)
+                    .interactiveDismissDisabled(edited)
             })
             .padding(4)
         }
