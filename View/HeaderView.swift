@@ -23,6 +23,7 @@ struct HeaderView: View {
             .sheet(isPresented: $presentGuideModal, content: {
                 GuideView()
             })
+            .sensoryFeedback(.impact, trigger: presentGuideModal)
             .padding(4)
             
             Button(action: {
@@ -36,6 +37,7 @@ struct HeaderView: View {
                 SettingsView(edited: $edited, changed: $changed)
                     .interactiveDismissDisabled(edited)
             })
+            .sensoryFeedback(.impact, trigger: presentSettingsModal)
             .padding(4)
         }
         .bold()

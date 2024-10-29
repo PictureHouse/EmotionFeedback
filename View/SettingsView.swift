@@ -141,6 +141,7 @@ struct SettingsView: View {
         } message: {
             Text("Saved successfully!")
         }
+        .sensoryFeedback(.success, trigger: showSaveAlert)
         .alert("Alert", isPresented: $showBlankAlert) {
             Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
                 Text("Okay")
@@ -148,6 +149,7 @@ struct SettingsView: View {
         } message: {
             Text("Username textfield is blank!")
         }
+        .sensoryFeedback(.error, trigger: showBlankAlert)
         .alert("Alert", isPresented: $showCancelAlert) {
             Button(role: .cancel) {
                 nameFocused = true
@@ -163,5 +165,6 @@ struct SettingsView: View {
         } message: {
             Text("If you exit, all the data will be deleted.")
         }
+        .sensoryFeedback(.warning, trigger: showCancelAlert)
     }
 }

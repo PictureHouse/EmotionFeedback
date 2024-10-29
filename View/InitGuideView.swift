@@ -89,5 +89,6 @@ struct InitGuideView: View {
         } message: {
             Text("Username textfield is blank!")
         }
+        .sensoryFeedback(.error, trigger: showBlankAlert)
     }
 }

@@ -25,6 +25,7 @@ struct EmotionInputView: View {
                     .foregroundStyle(Color(.orange))
                     .font(.title3)
                     .datePickerStyle(.compact)
+                    .sensoryFeedback(.selection, trigger: today)
                 
                 Group {
                     HStack {
@@ -42,6 +43,7 @@ struct EmotionInputView: View {
                         Text("😄")
                             .scaleEffect(1.5)
                     }
+                    .sensoryFeedback(.increase, trigger: answer[0])
                 }
                 .padding(.horizontal)
                 
@@ -62,6 +64,7 @@ struct EmotionInputView: View {
                         Text("🙆‍♂️")
                             .scaleEffect(1.5)
                     }
+                    .sensoryFeedback(.increase, trigger: answer[1])
                 }
                 .padding(.horizontal)
                 
@@ -82,6 +85,7 @@ struct EmotionInputView: View {
                         Text("🙆‍♂️")
                             .scaleEffect(1.5)
                     }
+                    .sensoryFeedback(.increase, trigger: answer[2])
                 }
                 .padding(.horizontal)
                 
@@ -102,6 +106,7 @@ struct EmotionInputView: View {
                         Text("🙆‍♂️")
                             .scaleEffect(1.5)
                     }
+                    .sensoryFeedback(.increase, trigger: answer[3])
                 }
                 .padding(.horizontal)
                 
@@ -123,6 +128,7 @@ struct EmotionInputView: View {
                             .scaleEffect(1.5)
                     }
                     .padding(.bottom)
+                    .sensoryFeedback(.increase, trigger: answer[4])
                 }
                 .padding(.horizontal)
                 
@@ -170,6 +176,7 @@ struct EmotionInputView: View {
                     .padding(.horizontal)
                     .buttonStyle(.borderedProminent)
                     .foregroundStyle(Color(.white))
+                    .sensoryFeedback(.success, trigger: changed)
                     
                     Button {
                         dismiss()

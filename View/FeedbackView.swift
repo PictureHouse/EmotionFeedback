@@ -68,6 +68,7 @@ struct FeedbackView: View {
                             .multilineTextAlignment(.center)
                     }
                 }
+                .sensoryFeedback(.success, trigger: tapped)
             })
         }
         .frame(minWidth: 320, idealWidth: .infinity, maxWidth: .infinity, minHeight: 100, idealHeight: 120, maxHeight: 150)

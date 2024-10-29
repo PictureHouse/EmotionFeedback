@@ -27,6 +27,7 @@ struct SectionHeaderView: View {
                 .fullScreenCover (isPresented: $presentEmotionInputModal,content: {
                     EmotionInputView(changed: $changed)
                 })
+                .sensoryFeedback(.impact, trigger: presentEmotionInputModal)
                 .padding()
             }
         }
