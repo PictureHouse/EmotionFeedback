@@ -5,6 +5,7 @@ struct EmotionInputView: View {
     @Environment(\.dismiss) var dismiss
     
     @State private var today = Date.now
+    @State private var calendarId: Int = 0
     @State private var answer = [Double](repeating: 0.0, count: 5)
     @Binding var changed: Bool
     
@@ -26,6 +27,10 @@ struct EmotionInputView: View {
                     .font(.title3)
                     .datePickerStyle(.compact)
                     .sensoryFeedback(.selection, trigger: today)
+                    .id(calendarId)
+                    .onChange(of: today) {
+                      calendarId += 1
+                    }
                 
                 Group {
                     HStack {
