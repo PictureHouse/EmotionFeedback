@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @Environment(AppStateManager.self) private var appStateManager
+    @Environment(NotificationManager.self) private var notificationManager
     
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
@@ -141,9 +142,9 @@ private extension SettingsView {
             let minute = Int(minute_string)
             
             UserData.shared.setPushMessageTime(time: pushMessageTime)
-            NotificationManager.shared.pushScheduledNotification(
-                title: NotificationManager.shared.title,
-                body: NotificationManager.shared.body,
+            notificationManager.pushScheduledNotification(
+                title: notificationManager.title,
+                body: notificationManager.body,
                 hour: hour!,
                 minute: minute!,
                 identifier: "customized_time"

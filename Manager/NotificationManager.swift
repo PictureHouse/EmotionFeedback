@@ -2,13 +2,12 @@ import Foundation
 import UserNotifications
 import UIKit
 
-class NotificationManager {
+@Observable
+final class NotificationManager {
     let title = "Emotion Feedback"
     let body = "It's time to enter today's emotions!"
     
-    static let shared = NotificationManager()
-    
-    private init() {}
+    init() {}
     
     func setAuthorization() {
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]

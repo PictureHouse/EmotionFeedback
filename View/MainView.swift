@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MainView: View {
     @Environment(AppStateManager.self) private var appStateManager
+    @Environment(NotificationManager.self) private var notificationManager
     @Environment(\.colorScheme) var colorScheme
     
     @State private var showMainView = false
@@ -27,10 +28,10 @@ struct MainView: View {
                         InitGuideView()
                             .onDisappear(perform: {
                                 UserDefaults.standard.set(true, forKey: "launchedBefore")
-                                NotificationManager.shared.setAuthorization()
-                                NotificationManager.shared.pushScheduledNotification(
-                                    title: NotificationManager.shared.title,
-                                    body: NotificationManager.shared.body,
+                                notificationManager.setAuthorization()
+                                notificationManager.pushScheduledNotification(
+                                    title: notificationManager.title,
+                                    body: notificationManager.body,
                                     hour: 22,
                                     minute: 0,
                                     identifier: "default_time"
@@ -175,4 +176,5 @@ private extension MainView {
 #Preview {
     MainView()
         .environment(AppStateManager())
+        .environment(NotificationManager())
 }
