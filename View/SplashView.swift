@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SplashView: View {
-    let version: String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
+    @Environment(AppStateManager.self) private var appStateManager
     
     var body: some View {
         VStack {
@@ -19,7 +19,7 @@ struct SplashView: View {
             
             Spacer()
             
-            Text("[Version \(version)] 2024 Yune Cho")
+            Text("[Version \(appStateManager.version)] 2024 Yune Cho")
                 .foregroundStyle(Color(.orange))
                 .padding(.bottom)
         }
@@ -28,4 +28,5 @@ struct SplashView: View {
 
 #Preview {
     SplashView()
+        .environment(AppStateManager())
 }

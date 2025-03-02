@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct HeaderView: View {
+struct MainViewHeader: View {
     @Binding var changed: Bool
     
     @State private var presentGuideModal = false
@@ -45,4 +45,8 @@ struct HeaderView: View {
         .foregroundStyle(Color(.white))
         .background(.orange)
     }
+}
+
+#Preview {
+    MainViewHeader(changed: .constant(false))
 }

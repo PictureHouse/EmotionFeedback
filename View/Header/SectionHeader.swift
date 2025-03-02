@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct SectionHeaderView: View {
+struct SectionHeader: View {
     let title: String
     let icon: String
     @Binding var changed: Bool

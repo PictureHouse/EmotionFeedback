@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ContentView: View {
+struct MainView: View {
     @Environment(\.colorScheme) var colorScheme
     
     @State private var showMainView = false
@@ -18,7 +18,7 @@ struct ContentView: View {
         if showMainView {
             VStack {
                 if launchedBefore == false {
-                    HeaderView(changed: $changed)
+                    MainViewHeader(changed: $changed)
                         .onAppear(perform: {
                             presentInitModal = true
                         })
@@ -26,8 +26,14 @@ struct ContentView: View {
                             InitGuideView()
                                 .onDisappear(perform: {
                                     UserDefaults.standard.set(true, forKey: "launchedBefore")
-                                    LocalNotificationHelper.shared.setAuthorization()
-                                    LocalNotificationHelper.shared.pushScheduledNotification(title: LocalNotificationHelper.shared.title, body: LocalNotificationHelper.shared.body, hour: 22, minute: 0, identifier: "default_time")
+                                    NotificationManager.shared.setAuthorization()
+                                    NotificationManager.shared.pushScheduledNotification(
+                                        title: NotificationManager.shared.title,
+                                        body: NotificationManager.shared.body,
+                                        hour: 22,
+                                        minute: 0,
+                                        identifier: "default_time"
+                                    )
                                     presentEmotionInputModal = true
                                 })
                         })
@@ -41,7 +47,7 @@ struct ContentView: View {
                                 })
                         })
                 } else if presentEmotionInputModal == true {
-                    HeaderView(changed: $changed)
+                    MainViewHeader(changed: $changed)
                         .sheet(isPresented: $presentEmotionInputModal, content: {
                             EmotionInputView(changed: $changed)
                                 .onDisappear(perform: {
@@ -52,7 +58,7 @@ struct ContentView: View {
                                 })
                         })
                 } else {
-                    HeaderView(changed: $changed)
+                    MainViewHeader(changed: $changed)
                 }
                 
                 if UIDevice.current.userInterfaceIdiom == .pad {
@@ -62,7 +68,7 @@ struct ContentView: View {
                                 Section {
                                     ChartView(data: emotionData)
                                 } header: {
-                                    SectionHeaderView(title: "Emotion Chart", icon: "chart.xyaxis.line", changed: $changed, phone: $phone)
+                                    SectionHeader(title: "Emotion Chart", icon: "chart.xyaxis.line", changed: $changed, phone: $phone)
                                 }
                                 
                                 Button(action: {
@@ -79,7 +85,7 @@ struct ContentView: View {
                                 Section {
                                     FeedbackView(result: analyzeResult, tapped: $tapped)
                                 } header: {
-                                    SectionHeaderView(title: "Feedback Message", icon: tapped ? "checkmark.message" : "ellipsis.message", changed: $changed, phone: $phone)
+                                    SectionHeader(title: "Feedback Message", icon: tapped ? "checkmark.message" : "ellipsis.message", changed: $changed, phone: $phone)
                                 }
                                 
                                 Spacer()
@@ -94,7 +100,7 @@ struct ContentView: View {
                                     Section {
                                         ChartView(data: emotionData)
                                     } header: {
-                                        SectionHeaderView(title: "Emotion Chart", icon: "chart.xyaxis.line", changed: $changed, phone: $phone)
+                                        SectionHeader(title: "Emotion Chart", icon: "chart.xyaxis.line", changed: $changed, phone: $phone)
                                     }
                                     
                                     Button(action: {
@@ -116,7 +122,7 @@ struct ContentView: View {
                                         Spacer()
                                         FeedbackView(result: analyzeResult, tapped: $tapped)
                                     } header: {
-                                        SectionHeaderView(title: "Feedback Message", icon: tapped ? "checkmark.message" : "ellipsis.message", changed: $changed, phone: $phone)
+                                        SectionHeader(title: "Feedback Message", icon: tapped ? "checkmark.message" : "ellipsis.message", changed: $changed, phone: $phone)
                                     }
                                     
                                     Spacer()
@@ -133,13 +139,13 @@ struct ContentView: View {
                         Section {
                             ChartView(data: emotionData)
                         } header: {
-                            SectionHeaderView(title: "Emotion Chart", icon: "chart.xyaxis.line", changed: $changed, phone: $phone)
+                            SectionHeader(title: "Emotion Chart", icon: "chart.xyaxis.line", changed: $changed, phone: $phone)
                         }
                         
                         Section {
                             FeedbackView(result: analyzeResult, tapped: $tapped)
                         } header: {
-                            SectionHeaderView(title: "Feedback Message", icon: tapped ? "checkmark.message" : "ellipsis.message", changed: $changed, phone: $phone)
+                            SectionHeader(title: "Feedback Message", icon: tapped ? "checkmark.message" : "ellipsis.message", changed: $changed, phone: $phone)
                         }
                         
                         Spacer()
@@ -167,5 +173,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    MainView()
 }
