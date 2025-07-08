@@ -1,8 +1,6 @@
 import SwiftUI
 
 struct FeedbackView: View {
-    @Environment(\.colorScheme) var colorScheme
-    
     let result: [Int]
     @Binding var tapped: Bool
     
@@ -33,7 +31,7 @@ struct FeedbackView: View {
             })
         }
         .frame(minWidth: 320, idealWidth: .infinity, maxWidth: .infinity, minHeight: 100, idealHeight: 120, maxHeight: 150)
-        .foregroundStyle(Color(.orange))
+        .foregroundStyle(Color.orange)
     }
 }
 

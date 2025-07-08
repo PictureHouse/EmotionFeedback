@@ -12,8 +12,9 @@ struct SectionHeader: View {
         HStack {
             Label(title, systemImage: icon)
                 .font(.system(size: 20, weight: .semibold, design: .rounded))
-                .foregroundStyle(Color(.orange))
+                .foregroundStyle(Color.orange)
                 .padding()
+            
             Spacer()
             
             if title == "Emotion Chart", phone == true {

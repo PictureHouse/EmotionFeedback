@@ -1,13 +1,13 @@
 import SwiftUI
 
 struct EmotionInputView: View {
-    @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
+    
+    @Binding var changed: Bool
     
     @State private var today = Date.now
     @State private var calendarId: Int = 0
     @State private var answer = [Double](repeating: 0.0, count: 5)
-    @Binding var changed: Bool
     
     var body: some View {
         VStack {
@@ -17,13 +17,13 @@ struct EmotionInputView: View {
                 Spacer()
             }
             .padding()
-            .foregroundStyle(Color(.white))
-            .background(Color(.orange))
+            .foregroundStyle(Color.white)
+            .background(Color.orange)
             
             ScrollView {
                 DatePicker("0. Select today’s date.", selection: $today, in: ...Date(), displayedComponents: .date)
                     .padding()
-                    .foregroundStyle(Color(.orange))
+                    .foregroundStyle(Color.orange)
                     .font(.title3)
                     .datePickerStyle(.compact)
                     .sensoryFeedback(.selection, trigger: today)
@@ -82,13 +82,13 @@ struct EmotionInputView: View {
                         Text("Not now")
                     }
                     .padding(.horizontal)
-                    .foregroundStyle(Color(.lightGray))
+                    .foregroundStyle(Color.gray)
                 }
                 
                 Spacer()
             }
         }
-        .foregroundStyle(Color(colorScheme == .dark ? .white : .black))
+        .background(Color.white)
     }
 }
 

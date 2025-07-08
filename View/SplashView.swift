@@ -14,13 +14,13 @@ struct SplashView: View {
             HStack {
                 Text("Emotion Feedback")
                     .font(.system(size: 30, weight: .black, design: .rounded))
-                    .foregroundStyle(Color(.orange))
+                    .foregroundStyle(Color.orange)
             }
             
             Spacer()
             
             Text("[Version \(appStateManager.version)] 2024 Yune Cho")
-                .foregroundStyle(Color(.orange))
+                .foregroundStyle(Color.gray)
                 .padding(.bottom)
         }
     }

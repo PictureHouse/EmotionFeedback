@@ -10,7 +10,7 @@ struct EmotionInputCell: View {
         VStack(alignment: .leading) {
             Text(text)
                 .font(.title3)
-                .foregroundStyle(Color(.orange))
+                .foregroundStyle(Color.orange)
             
             Slider(value: $value, in: -50 ... 50, step: 1) {
             } minimumValueLabel: {

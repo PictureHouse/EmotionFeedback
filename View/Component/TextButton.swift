@@ -14,7 +14,7 @@ struct TextButton: View {
                     .font(.title3)
             })
             .buttonStyle(.borderedProminent)
-            .foregroundStyle(Color(.white))
+            .foregroundStyle(Color.white)
         } else {
             Button(action: {
                 action()

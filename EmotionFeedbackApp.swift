@@ -12,6 +12,7 @@ struct EmotionFeedbackApp: App {
             MainView()
                 .environment(appStateManager)
                 .environment(notificationManager)
+                .preferredColorScheme(.light)
         }
     }
 }

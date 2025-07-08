@@ -3,8 +3,6 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(AppStateManager.self) private var appStateManager
     @Environment(NotificationManager.self) private var notificationManager
-    
-    @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
     
     @Binding var edited: Bool
@@ -12,11 +10,11 @@ struct SettingsView: View {
     
     @State private var userName: String = UserData.shared.getUserName()
     @State private var pushMessageTime: Date = UserData.shared.getPushMessageTime()
-    @FocusState private var nameFocused: Bool
-    
     @State private var showSaveAlert = false
     @State private var showBlankAlert = false
     @State private var showCancelAlert = false
+    
+    @FocusState private var nameFocused: Bool
     
     var body: some View {
         VStack {
@@ -82,10 +80,11 @@ struct SettingsView: View {
             Spacer()
             
             Text("[Version \(appStateManager.version)] 2024 Yune Cho")
-                .foregroundStyle(Color(.lightGray))
+                .foregroundStyle(Color.gray)
                 .padding(.bottom)
         }
-        .foregroundStyle(Color(colorScheme == .dark ? .white : .black))
+        .foregroundStyle(Color.black)
+        .background(Color.white)
         .alert("Save Success", isPresented: $showSaveAlert) {
             Button(action: {
                 dismiss()

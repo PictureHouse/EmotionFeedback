@@ -20,7 +20,7 @@ struct SheetHeader: View {
             })
         }
         .padding()
-        .foregroundStyle(Color(.orange))
+        .foregroundStyle(Color.orange)
     }
 }
 

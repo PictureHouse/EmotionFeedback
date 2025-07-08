@@ -3,12 +3,10 @@ import SwiftUI
 struct MainView: View {
     @Environment(AppStateManager.self) private var appStateManager
     @Environment(NotificationManager.self) private var notificationManager
-    @Environment(\.colorScheme) var colorScheme
     
     @State private var showMainView = false
     @State private var presentInitModal = false
     @State private var presentEmotionInputModal = false
-    
     @State private var emotionData = UserData.shared.getEmotionData()
     @State private var analyzeResult = UserData.shared.analyzeEmotionData()
     @State private var changed = false

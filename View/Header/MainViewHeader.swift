@@ -10,6 +10,7 @@ struct MainViewHeader: View {
         HStack {
             Text("Emotion Feedback")
                 .font(.system(size: 26, weight: .black, design: .rounded))
+            
             Spacer()
             
             Button(action: {
@@ -28,8 +29,8 @@ struct MainViewHeader: View {
         }
         .bold()
         .padding()
-        .foregroundStyle(Color(.white))
-        .background(.orange)
+        .foregroundStyle(Color.white)
+        .background(Color.orange)
     }
 }
 

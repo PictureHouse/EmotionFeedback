@@ -62,14 +62,14 @@ private extension InitGuideView {
                 .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
                 .padding()
         }
-        .foregroundStyle(Color(.orange))
+        .foregroundStyle(Color.orange)
     }
     
     var initGuide1: some View {
         VStack {
             Text("What is your name?")
                 .padding()
-                .foregroundStyle(Color(.orange))
+                .foregroundStyle(Color.orange)
                 .font(.system(size: 30, weight: .black, design: .rounded))
             
             TextField(userName, text: $userName, prompt: Text("Input Your Name"))
