@@ -3,7 +3,6 @@ import SwiftUI
 struct MainViewHeader: View {
     @Binding var changed: Bool
     
-    @State private var presentGuideModal = false
     @State private var presentSettingsModal = false
     @State private var edited = false
     
@@ -12,19 +11,6 @@ struct MainViewHeader: View {
             Text("Emotion Feedback")
                 .font(.system(size: 26, weight: .black, design: .rounded))
             Spacer()
-            
-            Button(action: {
-                presentGuideModal = true
-            }, label: {
-                Image(systemName: "info.bubble")
-                    .resizable()
-                    .frame(width: 26, height: 26)
-            })
-            .sheet(isPresented: $presentGuideModal, content: {
-                GuideView()
-            })
-            .sensoryFeedback(.impact, trigger: presentGuideModal)
-            .padding(4)
             
             Button(action: {
                 presentSettingsModal = true
