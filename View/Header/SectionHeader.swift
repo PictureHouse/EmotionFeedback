@@ -18,13 +18,13 @@ struct SectionHeader: View {
             Spacer()
             
             if title == "Emotion Chart", phone == true {
-                Button(action: {
+                Button {
                     presentEmotionInputModal = true
-                }, label: {
+                } label: {
                     Image(systemName: "plus")
                         .resizable()
                         .frame(width: 20, height: 20)
-                })
+                }
                 .fullScreenCover (isPresented: $presentEmotionInputModal,content: {
                     EmotionInputView(changed: $changed)
                 })

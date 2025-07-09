@@ -7,21 +7,21 @@ struct TextButton: View {
     
     var body: some View {
         if accent {
-            Button(action: {
+            Button {
                 action()
-            }, label: {
+            } label: {
                 Text(title)
                     .font(.title3)
-            })
+            }
             .buttonStyle(.borderedProminent)
             .foregroundStyle(Color.white)
         } else {
-            Button(action: {
+            Button {
                 action()
-            }, label: {
+            } label: {
                 Text(title)
                     .font(.title3)
-            })
+            }
             .buttonStyle(.bordered)
         }
     }

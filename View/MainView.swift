@@ -105,11 +105,11 @@ private extension MainView {
                 SectionHeader(title: "Emotion Chart", icon: "chart.xyaxis.line", changed: $changed, phone: $phone)
             }
             
-            Button(action: {
+            Button {
                 presentEmotionInputModal = true
-            }, label: {
+            } label: {
                 Label("Input Emotion", systemImage: "plus")
-            })
+            }
             .buttonStyle(.borderedProminent)
             .sheet(isPresented: $presentEmotionInputModal, content: {
                 EmotionInputView(changed: $changed)
@@ -139,11 +139,11 @@ private extension MainView {
                     SectionHeader(title: "Emotion Chart", icon: "chart.xyaxis.line", changed: $changed, phone: $phone)
                 }
                 
-                Button(action: {
+                Button {
                     presentEmotionInputModal = true
-                }, label: {
+                } label: {
                     Label("Input Emotion", systemImage: "plus")
-                })
+                }
                 .buttonStyle(.borderedProminent)
                 .sheet(isPresented: $presentEmotionInputModal,content: {
                     EmotionInputView(changed: $changed)

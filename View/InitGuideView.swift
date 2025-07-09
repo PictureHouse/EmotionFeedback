@@ -4,10 +4,10 @@ struct InitGuideView: View {
     @Environment(\.dismiss) var dismiss
     
     @State private var currentTab: Int = 0
-    
     @State private var userName: String = ""
-    @FocusState private var nameFocused: Bool
     @State private var showBlankAlert = false
+    
+    @FocusState private var nameFocused: Bool
     
     var body: some View {
         TabView(selection: $currentTab, content: {

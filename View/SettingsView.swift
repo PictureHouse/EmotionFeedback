@@ -17,7 +17,7 @@ struct SettingsView: View {
     @FocusState private var nameFocused: Bool
     
     var body: some View {
-        VStack {
+        VStack(alignment: .center) {
             SheetHeader(title: "Settings") {
                 if userName == UserData.shared.getUserName() {
                     dismiss()
@@ -27,44 +27,43 @@ struct SettingsView: View {
                 }
             }
             
-            VStack {
-                HStack {
-                    Label("User Name", systemImage: "person.fill")
-                }
-                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
-                .padding(.leading)
+            HStack {
+                Label("User Name", systemImage: "person.fill")
                 
-                TextField(userName, text: $userName, prompt: Text(userName))
-                    .padding()
-                    .textInputAutocapitalization(.never)
-                    .disableAutocorrection(true)
-                    .focused($nameFocused)
-                    .submitLabel(.done)
-                    .textFieldStyle(.roundedBorder)
-                    .onChange(of: userName) {
-                        if userName != UserData.shared.getUserName() {
-                            edited = true
-                        }
-                    }
+                Spacer()
             }
+            .padding(.horizontal)
             
-            VStack {
-                HStack {
-                    Label("Push Message Time", systemImage: "message.badge")
-                }
-                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
-                .padding(.leading)
-                
-                DatePicker("Select Push Message Time", selection: $pushMessageTime, displayedComponents: .hourAndMinute)
-                    .padding()
-                    .datePickerStyle(.wheel)
-                    .labelsHidden()
-                    .onChange(of: pushMessageTime) {
-                        if pushMessageTime != UserData.shared.getPushMessageTime() {
-                            edited = true
-                        }
+            TextField(userName, text: $userName, prompt: Text(userName))
+                .padding(.horizontal)
+                .padding(.bottom)
+                .textInputAutocapitalization(.never)
+                .disableAutocorrection(true)
+                .focused($nameFocused)
+                .submitLabel(.done)
+                .textFieldStyle(.roundedBorder)
+                .onChange(of: userName) {
+                    if userName != UserData.shared.getUserName() {
+                        edited = true
                     }
+                }
+            
+            HStack {
+                Label("Push Message Time", systemImage: "message.badge")
+                
+                Spacer()
             }
+            .padding(.horizontal)
+            
+            DatePicker("Select Push Message Time", selection: $pushMessageTime, displayedComponents: .hourAndMinute)
+                .padding()
+                .datePickerStyle(.wheel)
+                .labelsHidden()
+                .onChange(of: pushMessageTime) {
+                    if pushMessageTime != UserData.shared.getPushMessageTime() {
+                        edited = true
+                    }
+                }
             
             HStack {
                 TextButton(title: "Save", accent: true) {
@@ -75,7 +74,6 @@ struct SettingsView: View {
                     cancel()
                 }
             }
-            .padding()
             
             Spacer()
             
@@ -86,11 +84,11 @@ struct SettingsView: View {
         .foregroundStyle(Color.black)
         .background(Color.white)
         .alert("Save Success", isPresented: $showSaveAlert) {
-            Button(action: {
+            Button {
                 dismiss()
-            }, label: {
+            } label: {
                 Text("Okay")
-            })
+            }
         } message: {
             Text("Saved successfully!")
         }
@@ -110,11 +108,11 @@ struct SettingsView: View {
                 Text("Cancel")
             }
             
-            Button(action: {
+            Button {
                 dismiss()
-            }, label: {
+            } label: {
                 Text("Okay")
-            })
+            }
         } message: {
             Text("If you exit, all the data will be deleted.")
         }

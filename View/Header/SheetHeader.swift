@@ -11,13 +11,13 @@ struct SheetHeader: View {
             
             Spacer()
             
-            Button(action: {
+            Button {
                 action()
-            }, label: {
+            } label: {
                 Image(systemName: "x.circle")
                     .resizable()
                     .frame(width: 28, height: 28)
-            })
+            }
         }
         .padding()
         .foregroundStyle(Color.orange)

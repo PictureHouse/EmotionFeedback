@@ -10,10 +10,11 @@ struct EmotionInputView: View {
     @State private var answer = [Double](repeating: 0.0, count: 5)
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             HStack {
                 Text("👋 Hello! How are you today?")
                     .font(.system(size: 23, weight: .black, design: .rounded))
+                
                 Spacer()
             }
             .padding()
@@ -67,13 +68,12 @@ struct EmotionInputView: View {
                     value: $answer[4]
                 )
                 
-                HStack {
+                HStack(spacing: 24) {
                     TextButton(title: "Save", accent: true) {
                         updateEmotion()
                         changed = true
                         dismiss()
                     }
-                    .padding(.horizontal)
                     .sensoryFeedback(.success, trigger: changed)
                     
                     Button {
@@ -81,7 +81,6 @@ struct EmotionInputView: View {
                     } label: {
                         Text("Not now")
                     }
-                    .padding(.horizontal)
                     .foregroundStyle(Color.gray)
                 }
                 

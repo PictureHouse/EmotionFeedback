@@ -13,13 +13,13 @@ struct MainViewHeader: View {
             
             Spacer()
             
-            Button(action: {
+            Button {
                 presentSettingsModal = true
-            }, label: {
+            } label: {
                 Image(systemName: "gearshape")
                     .resizable()
                     .frame(width: 26, height: 26)
-            })
+            }
             .sheet(isPresented: $presentSettingsModal, content: {
                 SettingsView(edited: $edited, changed: $changed)
                     .interactiveDismissDisabled(edited)

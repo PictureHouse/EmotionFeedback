@@ -9,10 +9,10 @@ struct FeedbackView: View {
     
     var body: some View {
         VStack {
-            Button(action: {
+            Button {
                 setFeedbackMessage()
                 tapped = true
-            }, label: {
+            } label: {
                 VStack {
                     Image(systemName: tapped ? "checkmark.message" : "ellipsis.message")
                         .resizable()
@@ -28,7 +28,7 @@ struct FeedbackView: View {
                     }
                 }
                 .sensoryFeedback(.success, trigger: tapped)
-            })
+            }
         }
         .frame(minWidth: 320, idealWidth: .infinity, maxWidth: .infinity, minHeight: 100, idealHeight: 120, maxHeight: 150)
         .foregroundStyle(Color.orange)
