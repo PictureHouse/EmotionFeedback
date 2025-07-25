@@ -11,6 +11,7 @@ final class EmotionDataManager {
         self.modelContext = modelContext
     }
     
+    // Will be deprecated soon.
     func checkMigrationStatus() -> Bool {
         let swiftDataCount = fetchEmotionData().count
         
@@ -27,6 +28,7 @@ final class EmotionDataManager {
         }
     }
     
+    // Will be deprecated soon.
     func migrateFromUserData() {
         let appStorageData = UserData.shared.getEmotionData()
         var migratedCount = 0

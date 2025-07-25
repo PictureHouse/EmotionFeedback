@@ -134,6 +134,7 @@ private extension EmotionInputView {
                 emotionDataManager.addEmotionData(date: date, value: avg)
             }
         } else {
+            // Will be deprecated soon.
             UserData.shared.updateEmotionData(date: date, value: avg)
         }
     }

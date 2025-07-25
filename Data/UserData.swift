@@ -6,6 +6,7 @@ class UserData {
     @AppStorage("pushMessageTime") private var pushMessageTime = Date()
     @AppStorage("flag") private var flag = 0
     
+    // Will be deprecated soon.
     @AppStorage("migrated") var migrated: Bool = false
     @AppStorage("date0") private var date0 = Date()
     @AppStorage("value0") private var value0: Double = 0.0
@@ -62,6 +63,7 @@ class UserData {
         return self.pushMessageTime
     }
     
+    // Will be deprecated soon.
     func updateEmotionData(date: Date, value: Double) {
         var data: [(Date, Double, Bool)] = [
             (date0, value0, valid0),
@@ -149,6 +151,7 @@ class UserData {
         valid6 = data[6].2
     }
     
+    // Will be deprecated soon.
     func getEmotionData() -> [(Date, Double, Bool)] {
         let data: [(Date, Double, Bool)] = [
             (date0, value0, valid0),
@@ -163,6 +166,7 @@ class UserData {
         return data
     }
     
+    // Will be deprecated soon.
     func analyzeEmotionData() -> [Int] {
         let data: [(Date, Double, Bool)] = [
             (date0, value0, valid0),

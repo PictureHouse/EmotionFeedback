@@ -14,6 +14,7 @@ struct MainView: View {
     @State private var changed = false
     @State private var tapped = false
     @State private var phone = true
+    // Will be deprecated soon.
     @State private var migrationStatus: Bool = false
     @State private var migrationCompleted: Bool = false
     
