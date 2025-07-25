@@ -210,6 +210,7 @@ private extension MainView {
                 if migrationCompleted {
                     UserData.shared.migrated = true
                     migrationStatus = UserData.shared.migrated
+                    changed = true
                 } else {
                     if let emotionDataManager = emotionDataManager {
                         emotionDataManager.migrateFromUserData()
