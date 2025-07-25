@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 @main
 struct EmotionFeedbackApp: App {
@@ -12,6 +13,7 @@ struct EmotionFeedbackApp: App {
             MainView()
                 .environment(appStateManager)
                 .environment(notificationManager)
+                .modelContainer(for: EmotionData.self)
                 .preferredColorScheme(.light)
         }
     }

@@ -6,6 +6,7 @@ class UserData {
     @AppStorage("pushMessageTime") private var pushMessageTime = Date()
     @AppStorage("flag") private var flag = 0
     
+    @AppStorage("migrated") var migrated: Bool = false
     @AppStorage("date0") private var date0 = Date()
     @AppStorage("value0") private var value0: Double = 0.0
     @AppStorage("valid0") private var valid0: Bool = false

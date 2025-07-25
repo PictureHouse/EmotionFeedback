@@ -2,9 +2,11 @@ import SwiftUI
 
 struct EmotionInputView: View {
     @Environment(\.dismiss) var dismiss
+    @Environment(\.modelContext) private var modelContext
     
     @Binding var changed: Bool
     
+    @State private var emotionDataManager: EmotionDataManager?
     @State private var today = Date.now
     @State private var calendarId: Int = 0
     @State private var answer = [Double](repeating: 0.0, count: 5)
@@ -88,6 +90,9 @@ struct EmotionInputView: View {
             }
         }
         .background(Color.white)
+        .onAppear {
+            emotionDataManager = EmotionDataManager(modelContext: modelContext)
+        }
     }
 }
 
@@ -124,6 +129,12 @@ private extension EmotionInputView {
         }
         let avg = sum / 5.0
         
-        UserData.shared.updateEmotionData(date: date, value: avg)
+        if UserData.shared.migrated {
+            if let emotionDataManager = emotionDataManager {
+                emotionDataManager.addEmotionData(date: date, value: avg)
+            }
+        } else {
+            UserData.shared.updateEmotionData(date: date, value: avg)
+        }
     }
 }
