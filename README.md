@@ -10,7 +10,7 @@ Development Environment : Xcode 15 App Playground
 
 Runnable : iOS 17.0 or later, iPadOS 17.0 or later, macOS 14.0 or later
 
-Tech : SwiftUI, Swift Charts
+Tech : SwiftUI, SwiftData, Swift Charts
 
 ## 📲 Available on AppStore
 
