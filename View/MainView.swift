@@ -104,7 +104,7 @@ private extension MainView {
     var iPhoneView: some View {
         VStack {
             Section {
-                ChartView(data: emotionData)
+                ChartView(data: $emotionData)
             } header: {
                 SectionHeader(title: "Emotion Chart", icon: "chart.xyaxis.line", changed: $changed, phone: $phone)
             }
@@ -122,7 +122,7 @@ private extension MainView {
     var iPadVerticalView: some View {
         VStack {
             Section {
-                ChartView(data: emotionData)
+                ChartView(data: $emotionData)
             } header: {
                 SectionHeader(title: "Emotion Chart", icon: "chart.xyaxis.line", changed: $changed, phone: $phone)
             }
@@ -156,7 +156,7 @@ private extension MainView {
         HStack {
             VStack {
                 Section {
-                    ChartView(data: emotionData)
+                    ChartView(data: $emotionData)
                 } header: {
                     SectionHeader(title: "Emotion Chart", icon: "chart.xyaxis.line", changed: $changed, phone: $phone)
                 }
