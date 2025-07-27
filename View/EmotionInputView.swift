@@ -139,3 +139,7 @@ private extension EmotionInputView {
         }
     }
 }
+
+#Preview {
+    EmotionInputView(changed: .constant(false))
+}

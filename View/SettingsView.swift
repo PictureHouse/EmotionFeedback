@@ -161,3 +161,9 @@ private extension SettingsView {
         }
     }
 }
+
+#Preview {
+    SettingsView(edited: .constant(false), changed: .constant(false))
+        .environment(AppStateManager())
+        .environment(NotificationManager())
+}

@@ -78,3 +78,9 @@ private extension FeedbackView {
         }
     }
 }
+
+#Preview {
+    @Previewable @State var tapped: Bool = false
+    
+    FeedbackView(result: [1, 1, 0, 2, 2, 0 ,0], tapped: $tapped)
+}

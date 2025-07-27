@@ -81,3 +81,11 @@ private extension ChartView {
         }
     }
 }
+
+#Preview {
+    ChartView(data: .constant([
+        EmotionData(date: .now - 2, value: 40),
+        EmotionData(date: .now - 1, value: 35),
+        EmotionData(date: .now, value: 50),
+    ]))
+}

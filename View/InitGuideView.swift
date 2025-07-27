@@ -101,3 +101,7 @@ private extension InitGuideView {
         }
     }
 }
+
+#Preview {
+    InitGuideView()
+}

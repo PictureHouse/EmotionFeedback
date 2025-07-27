@@ -34,3 +34,11 @@ struct SectionHeader: View {
         }
     }
 }
+
+#Preview {
+    SectionHeader(
+        title: "Emotion Chart",
+        icon: "chart.bar.fill",
+        changed: .constant(false),
+        phone: .constant(false))
+}
