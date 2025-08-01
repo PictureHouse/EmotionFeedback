@@ -158,12 +158,11 @@ final class EmotionDataManager {
     private func cleanupOldData() {
         do {
             let calendar = Calendar.current
-            let cutoffDate = calendar.date(byAdding: .day, value: -maxDaysToKeep, to: Date()) ?? Date()
-            
+            let startOfToday = calendar.startOfDay(for: Date())
+            let cutoffDate = calendar.date(byAdding: .day, value: -maxDaysToKeep + 1, to: startOfToday)!
             let predicate = #Predicate<EmotionData> { emotionData in
                 emotionData.date < cutoffDate
             }
-            
             let descriptor = FetchDescriptor<EmotionData>(predicate: predicate)
             let oldData = try modelContext.fetch(descriptor)
             
