@@ -155,23 +155,21 @@ final class EmotionDataManager {
         }
     }
     
+    
     private func cleanupOldData() {
         do {
-            let calendar = Calendar.current
-            let startOfToday = calendar.startOfDay(for: Date())
-            let cutoffDate = calendar.date(byAdding: .day, value: -maxDaysToKeep + 1, to: startOfToday)!
-            let predicate = #Predicate<EmotionData> { emotionData in
-                emotionData.date < cutoffDate
-            }
-            let descriptor = FetchDescriptor<EmotionData>(predicate: predicate)
-            let oldData = try modelContext.fetch(descriptor)
+            let descriptor = FetchDescriptor<EmotionData>(
+                sortBy: [SortDescriptor(\.date, order: .forward)]
+            )
+            let allData = try modelContext.fetch(descriptor)
             
-            for data in oldData {
-                modelContext.delete(data)
-            }
-            
-            if !oldData.isEmpty {
-                print("Deleted \(oldData.count) old emotion data entries")
+            if allData.count > maxDaysToKeep {
+                let countToDelete = allData.count - maxDaysToKeep
+                let oldData = allData.prefix(countToDelete)
+                
+                for data in oldData {
+                    modelContext.delete(data)
+                }
                 saveContext()
             }
         } catch {
